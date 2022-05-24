@@ -33,6 +33,8 @@ class DetailStoryActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
+
+        supportActionBar?.hide()
     }
 
     private fun setupAction() {
@@ -41,8 +43,8 @@ class DetailStoryActivity : AppCompatActivity() {
         Glide.with(applicationContext)
             .load(story.photoUrl)
             .apply(RequestOptions().override(360, 150))
-            .into(binding.imgStory)
-        binding.usernameStory.text = story.name
+            .into(binding.imgItemStory)
+        binding.nameStory.text = story.name
         binding.descStory.text = story.description
     }
 

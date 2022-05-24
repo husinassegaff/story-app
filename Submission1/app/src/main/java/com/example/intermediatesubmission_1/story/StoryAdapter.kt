@@ -1,11 +1,15 @@
 package com.example.intermediatesubmission_1.story
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.content.Intent
+import android.widget.ImageView
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.intermediatesubmission_1.R
 import com.example.intermediatesubmission_1.databinding.ItemStoryBinding
 import com.example.intermediatesubmission_1.response.ListStoryItem
 
@@ -29,11 +33,22 @@ class StoryAdapter(private val listStory: List<ListStoryItem>): RecyclerView.Ada
         holder.binding.nameStory.text = story.name
         holder.binding.dateStory.text = story.createdAt.substringBefore("T"," ")
 
+        val imgPhoto: ImageView = holder.itemView.findViewById(R.id.img_item_story)
+
         holder.itemView.setOnClickListener {
-            val intent = Intent(it.context, DetailStoryActivity::class.java)
+            val intent = Intent(holder.itemView.context, DetailStoryActivity::class.java)
             intent.putExtra("story", story)
 
-            it.context.startActivity(intent)
+            val optionsCompat: ActivityOptionsCompat =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    holder.itemView.context as Activity,
+                    imgPhoto,
+                    "image"
+                )
+
+
+
+            holder.itemView.context.startActivity(intent, optionsCompat.toBundle())
         }
     }
 

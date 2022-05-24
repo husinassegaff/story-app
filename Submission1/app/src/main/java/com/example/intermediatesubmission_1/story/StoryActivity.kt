@@ -5,15 +5,15 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
+import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.intermediatesubmission_1.R
 import com.example.intermediatesubmission_1.ViewModelFactory
 import com.example.intermediatesubmission_1.databinding.ActivityStoryBinding
 import com.example.intermediatesubmission_1.model.UserPreference
@@ -53,6 +53,32 @@ class StoryActivity : AppCompatActivity() {
         showLoading(true)
         storyViewModel.isLoading.observe(this) {
             showLoading(it)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.option_menu, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) : Boolean {
+        return when (item.itemId) {
+            R.id.menu_settings -> {
+                AlertDialog.Builder(this).apply {
+                    setTitle(getString(R.string.alert_title_logout))
+                    setMessage(getString(R.string.alert_msg_logout))
+                    setPositiveButton(getString(R.string.alert_btn_logout)) { _, _ ->
+                        storyViewModel.logout()
+                        finish()
+                    }
+                    create()
+                    show()
+                }
+                true
+            }
+            else -> true
         }
     }
 
