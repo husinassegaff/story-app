@@ -56,27 +56,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_logo" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <com.example.intermediatesubmission_1.customview.MyEditTextEmail
+        android:id="@+id/emailEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:alpha="0"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_email"
-        app:startIconDrawable="@drawable/ic_baseline_email_24">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            tools:ignore="SpeakableTextPresentCheck" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:alpha="0"
+        tools:ignore="duplicateSpeakableTextCheck">
+    </com.example.intermediatesubmission_1.customview.MyEditTextEmail>
 
     <TextView
         android:id="@+id/label_password"
@@ -88,31 +80,22 @@
         android:alpha="0"
         style="@style/Title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <com.example.intermediatesubmission_1.customview.MyEditTextPassword
+        android:id="@+id/passwordEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:alpha="0"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_password"
-        app:passwordToggleEnabled="true"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24">
+        android:alpha="0"
+        />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword"
-            app:passwordToggleEnabled="true"
-            tools:ignore="SpeakableTextPresentCheck" />
-    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/btn_login"
@@ -127,7 +110,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 
     <ProgressBar
         android:id="@+id/progressBarLogin"

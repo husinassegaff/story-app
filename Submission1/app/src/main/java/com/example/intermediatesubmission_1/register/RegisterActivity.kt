@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -72,24 +73,19 @@ class RegisterActivity : AppCompatActivity() {
 
             when {
                 name.isEmpty() -> {
-                    checkInput(name, email, password)
-                    binding.nameLayout.error = getString(R.string.name_error)
+                    Toast.makeText(this, getString(R.string.name_error), Toast.LENGTH_SHORT).show()
                 }
                 email.isEmpty() -> {
-                    checkInput(name, email, password)
-                    binding.emailLayout.error = getString(R.string.email_error)
+                    Toast.makeText(this, getString(R.string.email_error), Toast.LENGTH_SHORT).show()
                 }
                 email.isNotEmpty() && !email.contains("@") -> {
-                    checkInput(name, email, password)
-                    binding.emailLayout.error = getString(R.string.email_not_valid)
+                    Toast.makeText(this, getString(R.string.email_not_valid), Toast.LENGTH_SHORT).show()
                 }
                 password.isEmpty() -> {
-                    checkInput(name, email, password)
-                    binding.passwordEditTextLayout.error = getString(R.string.password_empty)
+                    Toast.makeText(this, getString(R.string.password_empty), Toast.LENGTH_SHORT).show()
                 }
                 password.length < 6 -> {
-                    checkInput(name, email, password)
-                    binding.passwordEditTextLayout.error = getString(R.string.password_minimum)
+                    Toast.makeText(this, getString(R.string.password_minimum), Toast.LENGTH_SHORT).show()
                 }
 
                 else -> {
@@ -129,12 +125,6 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkInput(name: String, email: String, password: String) {
-        if (name.isNotEmpty()) binding.nameLayout.isErrorEnabled = false
-        if (email.isNotEmpty() && email.contains("@")) binding.emailLayout.isErrorEnabled = false
-        if (password.isNotEmpty() && password.length >= 6) binding.passwordEditTextLayout.isErrorEnabled = false
-    }
-
     private fun showLoading(it: Boolean?){
         binding.progressBarRegister.visibility =
             if (it == true) {
@@ -154,11 +144,11 @@ class RegisterActivity : AppCompatActivity() {
         val registerText = ObjectAnimator.ofFloat(binding.registerText, View.ALPHA, 1f).setDuration(500)
         val registerDesc = ObjectAnimator.ofFloat(binding.registerDesc, View.ALPHA, 1f).setDuration(500)
         val labelName = ObjectAnimator.ofFloat(binding.labelName, View.ALPHA, 1f).setDuration(500)
-        val nameLayout = ObjectAnimator.ofFloat(binding.nameLayout, View.ALPHA, 1f).setDuration(500)
+        val nameLayout = ObjectAnimator.ofFloat(binding.nameEditText, View.ALPHA, 1f).setDuration(500)
         val labelEmail = ObjectAnimator.ofFloat(binding.labelEmail, View.ALPHA, 1f).setDuration(500)
-        val emailLayout = ObjectAnimator.ofFloat(binding.emailLayout, View.ALPHA, 1f).setDuration(500)
+        val emailLayout = ObjectAnimator.ofFloat(binding.emailEditText, View.ALPHA, 1f).setDuration(500)
         val labelPassword = ObjectAnimator.ofFloat(binding.labelPassword, View.ALPHA, 1f).setDuration(500)
-        val passwordLayout = ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(500)
+        val passwordLayout = ObjectAnimator.ofFloat(binding.passwordEditText, View.ALPHA, 1f).setDuration(500)
         val register = ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(500)
 
         AnimatorSet().apply {

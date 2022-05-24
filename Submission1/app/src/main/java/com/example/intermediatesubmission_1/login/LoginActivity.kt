@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -73,20 +74,16 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.passwordEditText.text.toString()
             when {
                 email.isEmpty() -> {
-                    checkInput(email, password)
-                    binding.emailLayout.error = getString(R.string.email_error)
+                    Toast.makeText(this, getString(R.string.email_error), Toast.LENGTH_SHORT).show()
                 }
                 email.isNotEmpty() && !email.contains("@") -> {
-                    checkInput(email, password)
-                    binding.emailLayout.error = getString(R.string.email_not_valid)
+                    Toast.makeText(this, getString(R.string.email_not_valid), Toast.LENGTH_SHORT).show()
                 }
                 password.isEmpty() -> {
-                    checkInput(email, password)
-                    binding.passwordEditTextLayout.error = getString(R.string.password_empty)
+                    Toast.makeText(this, getString(R.string.password_empty), Toast.LENGTH_SHORT).show()
                 }
                 password.length < 6 -> {
-                    checkInput(email, password)
-                    binding.passwordEditTextLayout.error = getString(R.string.password_minimum)
+                    Toast.makeText(this, getString(R.string.password_minimum), Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                     loginViewModel.loginUser(email, password)
@@ -129,11 +126,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkInput(email: String, password: String) {
-        if (email.isNotEmpty() && email.contains("@")) binding.emailLayout.isErrorEnabled = false
-        if (password.isNotEmpty() && password.length >= 6) binding.passwordEditTextLayout.isErrorEnabled = false
-    }
-
     private fun showLoading(it: Boolean) {
         binding.progressBarLogin.visibility =
             if (it) {
@@ -151,9 +143,9 @@ class LoginActivity : AppCompatActivity() {
         val loginText = ObjectAnimator.ofFloat(binding.loginText, View.ALPHA, 1f).setDuration(500)
         val loginDesc = ObjectAnimator.ofFloat(binding.loginDesc, View.ALPHA, 1f).setDuration(500)
         val labelEmail = ObjectAnimator.ofFloat(binding.labelEmail, View.ALPHA, 1f).setDuration(500)
-        val emailLayout = ObjectAnimator.ofFloat(binding.emailLayout, View.ALPHA, 1f).setDuration(500)
+        val emailLayout = ObjectAnimator.ofFloat(binding.emailEditText, View.ALPHA, 1f).setDuration(500)
         val labelPassword = ObjectAnimator.ofFloat(binding.labelPassword, View.ALPHA, 1f).setDuration(500)
-        val passwordLayout = ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(500)
+        val passwordLayout = ObjectAnimator.ofFloat(binding.passwordEditText, View.ALPHA, 1f).setDuration(500)
         val login = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(500)
 
         AnimatorSet().apply {
