@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.intermediatesubmission_1.R
 import com.example.intermediatesubmission_1.ViewModelFactory
 import com.example.intermediatesubmission_1.databinding.ActivityRegisterBinding
+import com.example.intermediatesubmission_1.login.LoginActivity
 import com.example.intermediatesubmission_1.model.UserModel
 import com.example.intermediatesubmission_1.model.UserPreference
 
@@ -98,6 +99,13 @@ class RegisterActivity : AppCompatActivity() {
                                 setTitle(getString(R.string.alert_title))
                                 setMessage(getString(R.string.alert_msg_register))
                                 setPositiveButton(getString(R.string.alert_btn)) { _, _ ->
+                                    val intent = Intent(context, LoginActivity::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                }
+                                setOnCancelListener {
+                                    val intent = Intent(context, LoginActivity::class.java)
+                                    startActivity(intent)
                                     finish()
                                 }
                                 create()

@@ -33,9 +33,9 @@ class MyEditTextName : AppCompatEditText, View.OnTouchListener {
             }
             override fun afterTextChanged(s: Editable) {
                 if(s.toString().isEmpty()){
-                    showClearButton()
+                    error = "Please input your name"
                 }else{
-                    hideClearButton()
+                    showClearButton()
                 }
             }
         })

@@ -56,7 +56,7 @@ class StoryActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.option_menu, menu)
 
@@ -65,7 +65,7 @@ class StoryActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) : Boolean {
         return when (item.itemId) {
-            R.id.menu_settings -> {
+            R.id.menu_logout -> {
                 AlertDialog.Builder(this).apply {
                     setTitle(getString(R.string.alert_title_logout))
                     setMessage(getString(R.string.alert_msg_logout))

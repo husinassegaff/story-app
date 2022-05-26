@@ -100,6 +100,11 @@ class LoginActivity : AppCompatActivity() {
                                     finish()
 
                                 }
+                                setOnCancelListener {
+                                    val intent = Intent(context, StoryActivity::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                }
                                 create()
                                 show()
                             }

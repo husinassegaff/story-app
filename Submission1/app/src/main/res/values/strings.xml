@@ -2,7 +2,7 @@
     <string name="app_name">Story App</string>
 
     <!-- Option Menu    -->
-    <string name="menu_settings">Menu Settings</string>
+    <string name="menu_logout">Menu Logout</string>
 
     <!-- Item & List Story    -->
     <string name="username_story">Name User</string>

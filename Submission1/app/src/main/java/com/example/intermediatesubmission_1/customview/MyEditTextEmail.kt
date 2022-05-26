@@ -33,9 +33,9 @@ class MyEditTextEmail : AppCompatEditText, View.OnTouchListener {
             }
             override fun afterTextChanged(s: Editable) {
                 if(s.toString().isEmpty() || !s.contains("@")){
-                    showClearButton()
+                    error = "Please input your valid email"
                 }else{
-                    hideClearButton()
+                    showClearButton()
                 }
             }
         })

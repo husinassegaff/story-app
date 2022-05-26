@@ -33,9 +33,9 @@ class MyEditTextPassword : AppCompatEditText, View.OnTouchListener {
             }
             override fun afterTextChanged(s: Editable) {
                 if(s.toString().isEmpty() || s.toString().length < 6){
-                    showClearButton()
+                    error = "Password must be at least 6 characters"
                 }else{
-                    hideClearButton()
+                    showClearButton()
                 }
             }
         })

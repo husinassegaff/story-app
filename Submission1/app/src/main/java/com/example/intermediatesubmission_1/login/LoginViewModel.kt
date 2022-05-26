@@ -32,10 +32,11 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
                 else if (response.isSuccessful) {
                     val dataLogin = response.body()
                     if (dataLogin != null && !dataLogin.error){
+                        val name = dataLogin.loginResult.name
                         val userId = dataLogin.loginResult.userId
                         val token = dataLogin.loginResult.token
 
-                        login(userId, token)
+                        login(name, userId, token)
                         _loginCheck.value = true
                     } else {
                         Log.e(TAG, "Error Login User : ${dataLogin?.message}")
@@ -57,9 +58,9 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
         })
     }
 
-    fun login(userId: String, token: String) {
+    fun login(name: String, userId: String, token: String) {
         viewModelScope.launch {
-            pref.login(userId, token)
+            pref.login(name, userId, token)
         }
     }
 
