@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">Story App</string>
+
+    <!-- Option Menu    -->
+    <string name="menu_map">Google Maps</string>
+    <string name="menu_logout">Logout</string>
+
+    <!-- Item & List Story    -->
+    <string name="username_story">Name User</string>
+    <string name="desc_photo_story">Photo Story User</string>
+    <string name="date_story">Date</string>
+    <string name="lat_story">0.0</string>
+    <string name="lon_story">0.0</string>
+    <string name="story_not_found">Story not found</string>
+    <string name="img_not_found">Image Not Found</string>
+    <string name="desc_story">Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet</string>
+
+    <!-- Add Story    -->
+    <string name="desc_photo_add_story">New Photo Story</string>
+    <string name="btn_camera">Camera</string>
+    <string name="btn_gallery">Gallery</string>
+    <string name="add_desc">Description:</string>
+    <string name="upload_story">Upload Story</string>
+
+    <!-- Main    -->
+    <string name="main_text">Welcome back to our story app!</string>
+    <string name="hello_text">Hello, %s</string>
+    <string name="btn_home">Home</string>
+    <string name="btn_logout">Logout</string>
+
+    <!-- Welcome, Login, Register    -->
+    <string name="welcome_text">Welcome to Our Story App!</string>
+    <string name="welcome_image">Welcome Image</string>
+    <string name="register">Register</string>
+    <string name="register_desc">Complete your data below!</string>
+    <string name="login">Login</string>
+    <string name="login_desc">Log in with the account you have registered</string>
+    <string name="logo">Logo Image</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="name_error">Input your name</string>
+    <string name="email_error">Input your email</string>
+    <string name="password_error">Input your password</string>
+    <string name="email_not_valid">Input your valid email</string>
+    <string name="password_minimum">Password must be at least 6 characters</string>
+    <string name="password_empty">Input your password</string>
+    <string name="email_not_match">Email does not match</string>
+    <string name="password_not_match">Password does not match</string>
+
+    <!-- Alert Login & register        -->
+    <string name="alert_title">Yeah!</string>
+    <string name="alert_msg_login">You have successfully logged in!</string>
+    <string name="alert_msg_register">The account is ready!</string>
+    <string name="alert_btn">Next</string>
+
+    <string name="alert_title_negative">Oh no!</string>
+    <string name="alert_msg_login_negative">Sorry, your login failed. Please try again</string>
+    <string name="alert_msg_register_negative">Sorry, your account registration failed. Please try again</string>
+    <string name="alert_btn_negative">Try Again</string>
+
+    <string name="alert_title_logout">Logout</string>
+    <string name="alert_msg_logout">Are you sure you want to logout of your account?</string>
+    <string name="alert_btn_logout">Yes</string>
+
+    <!-- Add Story & Camera    -->
+    <string name="retrofit_error">Failed to run retrofit</string>
+    <string name="input_image">Please enter the image file first</string>
+    <string name="fail_capture">failed to take pictures</string>
+    <string name="fail_camera">failed to bring up camera</string>
+    <string name="no_permission">Not getting permission</string>
+    <string name="content_desc_camera">Camera</string>
+
+    <!-- Item Loading    -->
+    <string name="msg_error">Timeout</string>
+    <string name="btn_retry">Retry</string>
+
+    <string name="title_activity_maps">Story App : Google Maps</string>
+</resources>

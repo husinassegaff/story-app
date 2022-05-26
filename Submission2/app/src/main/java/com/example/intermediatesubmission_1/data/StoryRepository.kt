@@ -9,13 +9,14 @@ import com.example.intermediatesubmission_1.response.ListStoryItem
 
 class StoryRepository(private val storyDatabase: StoryDatabase, private val apiService: ApiService) {
 
-    fun getStory(): LiveData<PagingData<ListStoryItem>> {
+    fun getStory(token: String): LiveData<PagingData<ListStoryItem>> {
+        val bearer = "Bearer $token"
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
                 pageSize = 5
             ),
-            remoteMediator = StoryRemoteMediator(storyDatabase, apiService),
+            remoteMediator = StoryRemoteMediator(bearer, storyDatabase, apiService),
             pagingSourceFactory = {
                 storyDatabase.storyDao().getAllStory()
             }

@@ -1,8 +1,5 @@
 package com.example.intermediatesubmission_1.data
 
-import android.content.Intent
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -11,24 +8,16 @@ import androidx.room.withTransaction
 import com.example.intermediatesubmission_1.api.ApiService
 import com.example.intermediatesubmission_1.database.RemoteKeys
 import com.example.intermediatesubmission_1.database.StoryDatabase
-import com.example.intermediatesubmission_1.model.UserModel
-import com.example.intermediatesubmission_1.model.UserPreference
 import com.example.intermediatesubmission_1.response.ListStoryItem
-import com.example.intermediatesubmission_1.view.welcome.WelcomeActivity
-import org.json.JSONObject
-
 
 @OptIn(ExperimentalPagingApi::class)
 class StoryRemoteMediator(
+    private val bearer: String,
     private val database: StoryDatabase,
     private val apiService: ApiService
 ) : RemoteMediator<Int, ListStoryItem>() {
 
-    private lateinit var pref: UserPreference
-    private val user : LiveData<UserModel> = pref.getUser().asLiveData()
 
-    private lateinit var jsonObject: JSONObject
-    
     override suspend fun initialize(): InitializeAction {
         return InitializeAction.LAUNCH_INITIAL_REFRESH
     }
@@ -55,8 +44,8 @@ class StoryRemoteMediator(
         }
 
         try {
-            val responseData = apiService.getStory(user.value.token, page, state.config.pageSize, 1)
-            val endOfPaginationReached = responseData.isEmpty()
+            val responseData = apiService.getStory(bearer, page, state.config.pageSize)
+            val endOfPaginationReached = responseData.body()?.listStory?.isEmpty()
 
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
@@ -64,14 +53,14 @@ class StoryRemoteMediator(
                     database.storyDao().deleteAll()
                 }
                 val prevKey = if (page == 1) null else page - 1
-                val nextKey = if (endOfPaginationReached) null else page + 1
-                val keys = responseData.map {
+                val nextKey = if (endOfPaginationReached == true) null else page + 1
+                val keys = responseData.body()!!.listStory.map {
                     RemoteKeys(id = it.id, prevKey = prevKey, nextKey = nextKey)
                 }
                 database.remoteKeysDao().insertAll(keys)
-                database.storyDao().insertStory(responseData)
+                database.storyDao().insertStory(responseData.body()?.listStory as List<ListStoryItem>)
             }
-            return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
+            return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached!!)
         } catch (exception: Exception) {
             return MediatorResult.Error(exception)
         }
